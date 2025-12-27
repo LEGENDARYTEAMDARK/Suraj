@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I Love You My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to top, #ff9a9e, #fad0c4);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Login */
+#loginBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+input {
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Love message */
+#loveBox {
+    display: none;
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 5;
+}
+
+#loveBox h1 {
+    font-size: 42px;
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Roses */
+.rose {
+    position: absolute;
+    animation: fall 8s linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(-10vh) rotate(0deg); }
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginBox">
+    <h2>🔐 Enter Password</h2>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="unlock()">Unlock ❤️</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div id="loveBox">
+    <h1>I Love You My Love ❤️</h1>
+    <p>You are my forever 🌹</p>
+</div>
+
+<!-- Romantic Music -->
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+const roses = ["🌹","🌸","🌼","🌺","🌷"];
+
+function unlock() {
+    if (document.getElementById("password").value === "9899") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("loveBox").style.display = "block";
+        document.getElementById("music").play();
+        hearts();
+        roseRain();
+    } else {
+        document.getElementById("error").innerText = "Wrong password 💔";
+    }
+}
+
+function hearts() {
+    setInterval(() => {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = (20 + Math.random() * 25) + "px";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+    }, 350);
+}
+
+function roseRain() {
+    setInterval(() => {
+        const r = document.createElement("div");
+        r.className = "rose";
+        r.innerHTML = roses[Math.floor(Math.random() * roses.length)];
+        r.style.left = Math.random() * 100 + "vw";
+        r.style.fontSize = (24 + Math.random() * 20) + "px";
+        document.body.appendChild(r);
+        setTimeout(() => r.remove(), 8000);
+    }, 500);
+}
+</script>
+
+</body>
+</html>
